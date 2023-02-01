@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     @include('layouts.head')
-{{-- @dd(Route::current()->getName()); --}}
-<body @if(Route::current()->getName() == 'index') onload="startTime()" @elseif (Route::current()->getName() == 'button-builder') class="button-builder" @endif>
+<body class="button-builder">
 <div class="loader-wrapper">
     <div class="loader-index"><span></span></div>
     <svg>
@@ -24,7 +23,11 @@
     <!-- Page Body Start-->
     <div class="page-body-wrapper">
         <!-- Page Sidebar Start-->
-    @include('layouts.sidebar')
+        @if(auth()->user()->userType == 'admin')
+            @include('layouts.admin-sidebar')
+        @else
+            @include('layouts.employer-sidebar')
+        @endif
     <!-- Page Sidebar Ends-->
         <div class="page-body">
             <div class="container-fluid">
@@ -35,10 +38,14 @@
                         </div>
                         <div class="col-6">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{ route('/')}}">
+                                <li class="breadcrumb-item">
+                                    <a href="">
                                         <svg class="stroke-icon">
                                             <use href="{{ asset('assets/svg/icon-sprite.svg#stroke-home') }}"></use>
-                                        </svg></a></li></li>
+                                        </svg>
+                                    </a>
+                                </li>
+                                </li>
                                 @yield('breadcrumb-items')
                             </ol>
                         </div>

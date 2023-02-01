@@ -17,10 +17,18 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return redirect()->route('login');
 });
+Route::get('/ff', function () {
+    return redirect()->route('login');
+})->name('index');
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return match (auth()->user()->user_type){
+        'admin' => redirect()->route('admin.dashboard'),
+        'employer' => redirect()->route('employer.dashboard'),
+        default => abort(404),
+    };
 })->middleware(['auth', 'verified'])->name('dashboard');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -28,4 +36,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+require __DIR__.'/admin.php';
+require __DIR__.'/employer.php';
 require __DIR__.'/auth.php';
