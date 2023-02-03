@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->uuid();
 
-            $table->foreignId('authenticatable_id');
-            $table->string('authenticatable_type');
+            $table->foreignId('authenticatable_id')->nullable();
+            $table->string('authenticatable_type')->default("App\Models\Employer");
             $table->string('first_name');
             $table->string('last_name');
             $table->string('other_names')->nullable();

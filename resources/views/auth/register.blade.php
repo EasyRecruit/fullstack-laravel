@@ -1,52 +1,88 @@
-<x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
-        @csrf
+<!DOCTYPE html>
+<html lang="en">
+@include('layouts.head')
+<body onload="startTime()" class="button-builder">
 
-        <!-- Name -->
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+<div class="container-fluid p-0">
+    <div class="row m-0">
+        <div class="col-12 p-0">
+            <div class="login-card">
+                <div>
+                    <div><a class="logo" href="index.html"><img class="img-fluid for-light" src="../assets/images/logo/logo.png" alt="looginpage"><img class="img-fluid for-dark" src="../assets/images/logo/logo_dark.png" alt="looginpage"></a></div>
+                    <div class="login-main">
+                        <form class="theme-form" method="POST" action="{{ route('register') }}">
+                            @csrf
+                            <h4>Register for an account</h4>
+                            <div class="form-group">
+                                <label class="col-form-label">First Name</label>
+                                <input name="first_name" value="{{ old('first_name')}}" class="form-control" required="">
+                                <x-form-error value="first_name"/>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">Last Name</label>
+                                <input name="last_name" value="{{ old('last_name')}} " class="form-control" required="">
+                                <x-form-error value="last_name"/>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">Other Names</label>
+                                <input name="other_names" value="{{ old('other_names')}}" class="form-control">
+                                <x-form-error value="other_names"/>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">Email Address</label>
+                                <input name="email" value="{{ old('email')}}" class="form-control" type="email" required="">
+                                <x-form-error value="email"/>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">Mobile Number</label>
+                                <input name="mobile_number" value="{{ old('mobile_number')}}" class="form-control" type="mobile_number" required="">
+                                <x-form-error value="mobile_number"/>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">Password</label>
+                                <div class="form-input position-relative">
+                                    <input class="form-control" type="password" name="password" required="" placeholder="*********">
+                                    <x-form-error value="password"/>
+{{--                                    <div class="show-hide"><span class="show"></span></div>--}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">Password Confirmation</label>
+                                <div class="form-input position-relative">
+                                    <input class="form-control" type="password" name="password_confirmation" required="" placeholder="*********">
+{{--                                    <div class="show-hide"><span class="show"></span></div>--}}
+                                </div>
+                            </div>
+                            <div class="form-group mb-0">
+                                <a class="link" href="{{ route('password.request') }}">Forgot password?</a>
+                                <div class="text-end mt-3">
+                                    <button class="btn btn-primary btn-block w-100" type="submit">Register</button>
+                                </div>
+                            </div>
+                            <p class="mt-4 mb-0 text-center">
+                                Already have an account?
+                                <a class="ms-2" href="{{ route('login') }}">
+                                    Login
+                                </a>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
+</div>
+@livewireScripts
+<!-- latest jquery-->
+@include('layouts.script')
+<!-- Plugin used-->
 
-        <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
+{{-- <script type="text/javascript">
+  if ($(".page-wrapper").hasClass("horizontal-wrapper")) {
+        $(".according-menu.other" ).css( "display", "none" );
+        $(".sidebar-submenu" ).css( "display", "block" );
+  }
+</script> --}}
+</body>
+</html>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
-                            name="password_confirmation" required />
-
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
-
-            <x-primary-button class="ml-4">
-                {{ __('Register') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>

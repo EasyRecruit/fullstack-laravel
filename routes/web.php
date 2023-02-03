@@ -27,7 +27,7 @@ Route::get('/dashboard', function () {
         'employer' => redirect()->route('employer.dashboard'),
         default => abort(404),
     };
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
 
 Route::middleware('auth')->group(function () {

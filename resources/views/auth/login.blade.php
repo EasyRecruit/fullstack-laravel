@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 @include('layouts.head')
-{{-- @dd(Route::current()->getName()); --}}
-<body @if(Route::current()->getName() == 'index') onload="startTime()" @elseif (Route::current()->getName() == 'button-builder') class="button-builder" @endif>
+<body onload="startTime()" class="button-builder">
 
 <div class="container-fluid p-0">
     <div class="row m-0">
@@ -48,7 +47,7 @@
                             </div>
                             <p class="mt-4 mb-0 text-center">
                                 Don't have account?
-                                <a class="ms-2" href="sign-up.html">
+                                <a class="ms-2" href="{{ route('register') }}">
                                     Create Account
                                 </a>
                             </p>
