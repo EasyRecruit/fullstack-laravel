@@ -10,6 +10,7 @@ class UserService
 {
     public static function create(array $data) {
         (new UserService)->verifyCreateStruct($data);
+        $data['password'] = bcrypt($data['password']);
         $user = User::create($data);
         return $user;
     }
