@@ -23,7 +23,7 @@ class RegisteredUserController extends Controller
     {
         $user_data = $request->validated();
         $user = UserService::create($user_data);
-//        event(new Registered($user));
+        event(new Registered($user));
         Auth::login($user);
         return redirect()->route('employer.verification.dashboard');
     }

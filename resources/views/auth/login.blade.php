@@ -37,14 +37,14 @@
                                     <button class="btn btn-primary btn-block w-100" type="submit">Sign in</button>
                                 </div>
                             </div>
-                            <h6 class="text-muted mt-4 or">Or Sign in with</h6>
-                            <div class="social mt-4">
-                                <div class="btn-showcase">
-                                    <a class="btn btn-light" href="https://www.linkedin.com/login" target="_blank">
-                                        <i class="txt-google" data-feather="google"></i> GMail
-                                    </a>
-                                </div>
-                            </div>
+{{--                            <h6 class="text-muted mt-4 or">Or Sign in with</h6>--}}
+{{--                            <div class="social mt-4">--}}
+{{--                                <div class="btn-showcase">--}}
+{{--                                    <a class="btn btn-light" href="https://www.linkedin.com/login" target="_blank">--}}
+{{--                                        <i class="txt-google" data-feather="google"></i> GMail--}}
+{{--                                    </a>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                             <p class="mt-4 mb-0 text-center">
                                 Don't have account?
                                 <a class="ms-2" href="{{ route('register') }}">
